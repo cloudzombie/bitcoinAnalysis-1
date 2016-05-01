@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>An example showing how the fullPage.js jQuery plugin works</title>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Candal&subset=latin,latin-ext,vietnamese,cyrillic' rel='stylesheet' type='text/css'>
+
+    <!-- css files -->
+    <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700' rel='stylesheet' type='text/css'>    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.css" rel="stylesheet"> 
+    <link href="css/main.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  <script type="text/javascript">
+  $(document).ready(function() {
+
+	  var active1 = false;
+	  var active2 = false;
+	  var active3 = false;
+	  var active4 = false;
+
+	    $('.parent2').hover('mousedown touchstart', function() {
+	    
+	    if (!active1) $(this).find('.test1').css({'background-color': '#170147', 'transform': 'translate(0px,125px)'});
+	    else $(this).find('.test1').css({'background-color': 'transparent', 'transform': 'none'}); 
+	     if (!active2) $(this).find('.test2').css({'background-color': '#170147', 'transform': 'translate(60px,105px)'});
+	    else $(this).find('.test2').css({'background-color': 'transparent', 'transform': 'none'});
+	      if (!active3) $(this).find('.test3').css({'background-color': '#170147', 'transform': 'translate(105px,60px)'});
+	    else $(this).find('.test3').css({'background-color': 'transparent', 'transform': 'none'});
+	      if (!active4) $(this).find('.test4').css({'background-color': '#170147', 'transform': 'translate(125px,0px)'});
+	    else $(this).find('.test4').css({'background-color': 'transparent', 'transform': 'none'});
+	    active1 = !active1;
+	    active2 = !active2;
+	    active3 = !active3;
+	    active4 = !active4;
+	      
+	    });
+	});</script>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+svg {
+  background: white;
+width:80%;
+  margin-left:120px;
+ height:100%;
+  border:1px solid black;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
+<body style="background:url('/img/blue6.jpg')">
+<div class="parent2" style="">
+ <div class="test1" style="background-color:#26518c"><a href="#fifthSection"><i  class="fa fa-line-chart fa-2x" aria-hidden="true"></i></a>
+ </div>
+ <div class="test2" style="background-color:#26518c"><a href="#fourthSection"><i class="fa fa-font fa-2x" aria-hidden="true"></i></a></div>
+ <div class="test3" style="background-color:#26518c"><a href="#thirdSection"><i class="fa fa-area-chart fa-2x" aria-hidden="true"></i></a></div>
+ <div class="test4" style="background-color:#26518c"><a href="#secondSection"><i class="fa fa-btc fa-2x" aria-hidden="true"></i></a></div>
+ <div class="mask2"><a href="#firstSection"><i class="fa fa-home fa-3x"></i></a></div>
+</div>
+<header>
+      <div class="header-top clearfix">
+       <h1 align="center"><a href="#firstSection" style=" font-family:serif ; font-stretch: extra-expanded;font-weight:bolder;font-size:60px; color: #000030"><i class="fa fa-btc " style="" aria-hidden="true"></i>ITCOIN</a></h1>
+       <a  class="l-right toggle-menu" 	style="margin-top:-70px;" href="#">
+          <i></i>
+          <i></i>
+          <i></i>
+        </a>
+      </div>
+
+      <nav class="hide">
+     <ul id="menu">
+			<li class="loud"><a href="/">Home</a></li>
+			<li class="loud"><a href="/charts">Analysis</a></li>
+			<li class="loud"><a href="/prediction">Predictions</a></li>
+			<li class="loud"><a href="/stats">Statistics</a></li>
+			<li class="loud"><a href="/about">About Us</a></li>
+		</ul>
+            </nav>
+    
+  </header>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<br><br>
+<center style="font-size: 18px; margin-top: 80px; color:white;">
+<b style="font-size: 25px">Exchange Rates</b><br>
+Currency data from the major bitcoin exchanges.
+</center> 
+<br><br>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 1000 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .rangeRound([height, 0]);
+
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format(".2s"));
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+ 	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("./exchangeRate.csv", function(error, data) {
+  if (error) throw error;
+
+  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "State"; }));
+
+  data.forEach(function(d) {
+    var y0 = 0;
+    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+    d.total = d.ages[d.ages.length - 1].y1;
+  });
+
+  data.sort(function(a, b) { return b.total - a.total; });
+
+  x.domain(data.map(function(d) { return d.State; }));
+  y.domain([0, d3.max(data, function(d) { return d.total; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Price");
+
+  var state = svg.selectAll(".state")
+      .data(data)
+    .enter().append("g")
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x(d.State) + ",0)"; });
+
+  state.selectAll("rect")
+      .data(function(d) { return d.ages; })
+    .enter().append("rect")
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.y1); })
+      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+      .style("fill", function(d) { return color(d.name); });
+
+  var legend = svg.selectAll(".legend")
+      .data(color.domain().slice().reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
+});
+
+</script>
+</body>
